@@ -1,46 +1,54 @@
 import streamlit as st
 import urllib.parse
 
-# 1. إعدادات الصفحة عشان تبان احترافية
-st.set_page_config(page_title="Abdo Farag AI Studio", page_icon="🎨", layout="centered")
+# إعدادات الصفحة
+st.set_page_config(page_title="Abdo Farag AI Studio", page_icon="💎", layout="centered")
 
-# 2. تنسيق الكلام عشان يبان بوضوح (CSS بسيط)
+# تنسيق الموبايل والخطوط (CSS)
 st.markdown("""
     <style>
-    .main { text-align: center; }
-    h1 { color: #FF4B4B; font-size: 50px !important; }
-    h3 { color: #31333F; font-size: 30px !important; }
-    .stTextInput label { font-size: 20px !important; font-weight: bold; }
+    .stApp { background-color: #0E1117; }
+    h1, h2, h3 { color: #FFD700 !important; text-align: center; }
+    p { color: white !important; text-align: center; font-size: 18px; }
+    /* تنسيق الزرار عشان يبان بوضوح */
+    .stButton>button {
+        width: 100%;
+        background-color: #FFD700 !important;
+        color: black !important;
+        font-weight: bold !important;
+        height: 3em;
+        border-radius: 10px;
+    }
+    /* تنسيق خانة الكتابة */
+    .stTextInput>div>div>input {
+        background-color: #1A1C23 !important;
+        color: white !important;
+        border: 1px solid #FFD700 !important;
+    }
     </style>
-    """, unsafe_allow_ Harris=True)
+    """, unsafe_allow_html=True)
 
-st.title("🎨 Abdo Farag AI Studio")
-st.markdown("### 🚀 Automated Storyboard Generator")
+st.title("💎 ABDO FARAG AI STUDIO")
+st.markdown("<p>The Masterpiece Prompt Generator</p>", unsafe_allow_html=True)
 
-# 3. إدخال البيانات
-user_input = st.text_input("What do you want to create? (Write here):")
+# خانة الإدخال
+user_input = st.text_input("Enter your creative idea here:", placeholder="e.g. A lion wearing a golden crown")
 
-if st.button("Generate Magic ✨"):
+if st.button("GENERATE IMAGE ✨"):
     if user_input:
         st.markdown("---")
-        
-        # عرض البرومبت بشكل شيك
-        st.subheader("📝 Your Professional Prompt:")
-        st.info(f"Hyper-realistic cinematic shot of {user_input}, 8k, luxury lighting")
-        
-        # 4. حل مشكلة الصورة (رابط مباشر وسريع جداً)
-        st.markdown("### 🖼️ AI Generated Preview:")
-        
-        # تنظيف النص واستخدام سيرفر صور مختلف ومضمون
+        # رابط الصورة المباشر (أسرع واحد في العالم)
         clean_text = urllib.parse.quote(user_input)
         image_url = f"https://image.pollinations.ai/prompt/{clean_text}?width=1024&height=1024&nologo=true"
         
         # عرض الصورة
-        st.image(image_url, caption=f"Preview for: {user_input}", use_container_width=True)
+        st.image(image_url, caption="Your AI Masterpiece", use_container_width=True)
         
-        st.success("Your image is ready! 🚀")
+        # عرض البرومبت تحتها
+        st.subheader("📝 Professional Prompt:")
+        st.code(f"Cinematic shot of {user_input}, hyper-realistic, 8k, luxury lighting")
     else:
-        st.warning("Please type something first!")
+        st.warning("Please type your idea first!")
 
 st.markdown("---")
-st.caption("© 2026 Abdo Farag AI Studio | Designed for Mobile & Web")
+st.markdown("<p>Created by: Abdo Farag | AI Content Creator & Developer</p>", unsafe_allow_html=True)
